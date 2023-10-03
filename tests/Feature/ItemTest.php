@@ -28,7 +28,7 @@ class ItemTest extends TestCase
     public function testAll()
     {
         $response = $this->get('api/v1/items');
-        $response->assertStatus(200);
+        $response->assertSuccessful();
     }
     /**
      * @group items
@@ -39,7 +39,7 @@ class ItemTest extends TestCase
     public function testShow()
     {
         $response = $this->get('api/v1/items/show/1');
-        $response->assertStatus(200);
+        $response->assertSuccessful();
     }
     /**
      * @group items
@@ -54,6 +54,7 @@ class ItemTest extends TestCase
             'phone' => $this->item->phone,
             'key' => $this->item->key
         ]);
+        $response->assertSuccessful();
         $this->assertDatabaseHas('items', [
             'name' => $this->item->name,
             'phone' => $this->item->phone,
@@ -72,6 +73,7 @@ class ItemTest extends TestCase
             'id' => 1,
             'name' => 'Das das'
         ]);
+        $response->assertStatus(302);
         $this->assertDatabaseHas('items', ['name' => 'Das das']);
     }
     /**
@@ -83,6 +85,7 @@ class ItemTest extends TestCase
     public function testDelete()
     {
         $response = $this->post('api/v1/items/delete/1');
+        $response->assertStatus(302);
         $this->assertDatabaseMissing('items', ['id' => 1]);
     }
 }

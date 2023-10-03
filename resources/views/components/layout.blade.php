@@ -17,7 +17,7 @@
   <header>
     <!-- place navbar here -->
   </header>
-  <main class="container m-auto">
+  <main class="container m-auto mt-5">
     {{$slot}}
   </main>
   <footer>

@@ -8,6 +8,8 @@ class Item extends Model
 {
     protected $fillable = [
         'name',
-        'phone'
+        'phone',
+        'key',
+        'updated_at'
     ];
 }
